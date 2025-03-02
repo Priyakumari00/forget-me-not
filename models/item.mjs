@@ -20,6 +20,6 @@ const ItemSchema = new mongoose.Schema({
         ref:"Store",
         required:true,
     },
-})
+},{timestamps:true})
 
 export const ItemModel = mongoose.model("Item",ItemSchema);
