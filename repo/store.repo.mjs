@@ -16,4 +16,20 @@ export class StoreRepo {
         }
         return result;
     }
+     static async getAllStoresForUser(userId){
+        try {
+            const items = await ItemModel.find({ user:userId },"store");
+            console.log(items);
+            
+            const storeIds = [...new Set(items.map(item => item.storeId.toString()))];
+            console.log(storeIds);
+    
+            const stores = await StoreModel.find({ _id: { $in: storeIds } });
+            console.log(stores);
+    
+            return stores;
+        } catch (error) {
+            throw new Error(error.message);
+        }
+    };
 }

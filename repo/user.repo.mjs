@@ -9,6 +9,14 @@ export class UserRepo{
         return result;
     }
 
+    static async findById(userId){
+        const result = await UserModel.findById(userId);
+        if( result == undefined || result == null){
+            return null;
+        }
+        return result;
+    }
+
     static async createUser(name, email, password, phone){
         const user = await UserModel.create({name:name,email:email,password:password, phone: phone})
         if(user == undefined || user == null){
@@ -16,5 +24,7 @@ export class UserRepo{
         }
        return user;
     }
+
+
 }
 
